@@ -1,7 +1,6 @@
 package;
 
 import flash.display.Sprite;
-import flash.geom.ColorTransform;
 import openfl.Assets;
 import flash.display.BlendMode;
 import flixel.FlxG;
