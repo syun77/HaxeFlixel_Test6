@@ -1,11 +1,12 @@
 package;
 
+import flixel.util.FlxPoint;
 import flash.display.BlendMode;
 import openfl.Assets;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText;
-import flixel.math.FlxPoint;
+import flixel.util.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.tile.FlxTilemap;
 
@@ -41,7 +42,7 @@ class MenuState extends FlxState
 		// Game title
 		
 		var headline:FlxText = new FlxText(0, 40, FlxG.width, "Minimalist TD", 16);
-		headline.alignment = CENTER;
+		headline.alignment = "center";
 		
 		// Credits
 		
