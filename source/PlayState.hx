@@ -72,7 +72,7 @@ class PlayState extends FlxState {
     private var _firerateButton:Button;
     private var _nextWaveButton:Button;
     private var _rangeButton:Button;
-    private var _speedButton:Button;
+    private var _speedButton:Button; // ゲームスピード変更ボタン
     private var _towerButton:Button;
     private var _sellButton:Button;
 
@@ -91,8 +91,8 @@ class PlayState extends FlxState {
     private var _speed:Int = 1;
     private var _waveCounter:Int = 0;
 
-    private var _enemySpawnX:Int = 25;
-    private var _enemySpawnY:Int = -6;
+    private var _enemySpawnX:Int = 25; // 敵出現座標(X)
+    private var _enemySpawnY:Int = -6; // 敵出現座標(Y)
     private var _goalX:Int = 245; // ゴール座標(X)
     private var _goalY:Int = 43; // ゴール座標(Y)
 
@@ -132,6 +132,7 @@ class PlayState extends FlxState {
         var height:Int = FlxG.height - 18;
         _towerButton = new Button(2, height, "Buy [T]ower ($" + towerPrice + ")", buildTowerCallback.bind(false), 120);
         _nextWaveButton = new Button(100, height, "[N]ext Wave", nextWaveCallback.bind(false), 143);
+        // ゲームスピード変更ボタン
         _speedButton = new Button(FlxG.width - 20, height, "x1", speedButtonCallback.bind(false), 21);
         _sellButton = new Button(220, height, "[S]ell Mode", sellButtonCallback.bind(true));
         _sellButton.visible = false;
@@ -555,13 +556,15 @@ class PlayState extends FlxState {
     }
 
     /**
-	 * A function that is called when the user changes game speed.
-	 */
+     * ゲームスピード変更ボタンを押した
+     */
     private function speedButtonCallback(Skip:Bool = false):Void {
         if(!_guiGroup.visible && !Skip) {
+            // 非表示かつスキップが有効なら、反応しない
             return;
         }
 
+        // 1〜3の範囲にする
         if(_speed < 3) {
             _speed += 1;
         }
@@ -569,9 +572,13 @@ class PlayState extends FlxState {
             _speed = 1;
         }
 
+        // ゲームスピードを変更
         FlxG.timeScale = _speed;
+
+        // テキスト更新
         _speedButton.text = "x" + _speed;
 
+        // 選択SEを再生
         playSelectSound();
     }
 
@@ -680,27 +687,26 @@ class PlayState extends FlxState {
     }
 
     /**
-	 * A function that attempts to build a tower when the user clicks on the playable space. Must have money,
-	 * and be building in a valid place (not on another tower, the road, or the GUI).
-	 */
+     * タワーを建てる
+     */
     private function buildTower():Void {
         // Can't place towers on GUI
 
         if(FlxG.mouse.y > FlxG.height - 16) {
+            // GUIエリアなので置けない
             return;
         }
 
-        // Can't buy towers without money
-
         if(money < towerPrice) {
+            // お金が足りない
+            // 失敗SE再生
             FlxG.sound.play("deny");
 
             toggleMenus(General);
             return;
         }
 
-        // Snap to grid
-
+        // 座標をグリッドに合わせる
         var xPos:Float = FlxG.mouse.x - (FlxG.mouse.x % 8);
         var yPos:Float = FlxG.mouse.y - (FlxG.mouse.y % 8);
 
@@ -708,8 +714,11 @@ class PlayState extends FlxState {
 
         for(tower in _towerGroup) {
             if(tower.x == xPos && tower.y == yPos) {
+                // すでにタワーがあるので配置できない
+                // 失敗SE再生
                 FlxG.sound.play("deny");
 
+                // 一般メニューに戻す
                 toggleMenus(General);
                 return;
             }
@@ -718,8 +727,11 @@ class PlayState extends FlxState {
         //Can't place towers on the road
 
         if(_map.getTile(Std.int(xPos / 8), Std.int(yPos / 8)) == 0) {
+            // 何かあるので配置できない
+            // 失敗SE再生
             FlxG.sound.play("deny");
 
+            // 一般メニューに戻す
             toggleMenus(General);
             return;
         }
@@ -802,16 +814,30 @@ class PlayState extends FlxState {
         _enemyText.size = 16;
     }
 
+
     /**
-	 * Spawns an enemy. Decrements the enemiesToSpawn variable, and recycles an enemy from enemyGroup and then initiates
-	 * it and gives it a path to follow.
-	 */
+     * 敵を生み出す
+     **/
     private function spawnEnemy():Void {
+
+        // 敵の残り数を減らす
         enemiesToSpawn--;
 
+        // 敵を初期化
         var enemy:Enemy = enemyGroup.recycle(Enemy);
         enemy.init(_enemySpawnX, _enemySpawnY);
-        enemy.followPath(_map.findPath(FlxPoint.get(_enemySpawnX, _enemySpawnY), FlxPoint.get(_goalX + 5, _goalY + 5)));
+
+        // 敵をパスで動かす(見つからなかった場合はnull)
+        var pList:Array<FlxPoint> = _map.findPath(
+            FlxPoint.get(_enemySpawnX, _enemySpawnY), // 開始座標
+            FlxPoint.get(_goalX + 5, _goalY + 5),     // 終了座標
+            true,                                     // 重複を削除(デフォルト:true)
+            false,                                    // 障害物を斜め移動することを許可する(デフォルト:false)
+            true                                      // 斜め移動するための追加タイルが必要か(デフォルト:true)
+        );
+        enemy.followPath(pList);
+
+        // 生成カウンタを初期化
         _spawnCounter = 0;
     }
 
