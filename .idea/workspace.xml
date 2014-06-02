@@ -54,8 +54,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -66,38 +66,18 @@
       <file leaf-file-name="PlayState.hx" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/PlayState.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="13175" max-vertical-offset="17119">
+            <state vertical-scroll-proportion="0.0" vertical-offset="12000" max-vertical-offset="15105">
               <caret line="800" column="21" selection-start-line="800" selection-start-column="21" selection-end-line="800" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EnemyGibs.hx" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="EnemyGibs.hx" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/EnemyGibs.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1190">
-              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FlxEmitter.hx" pinned="false" current="false" current-in-tab="false">
-        <entry file="file:///usr/lib/haxe/lib/flixel/3,3,4/flixel/effects/particles/FlxEmitter.hx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-              <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FlxTypedEmitter.hx" pinned="false" current="true" current-in-tab="true">
-        <entry file="file:///usr/lib/haxe/lib/flixel/3,3,4/flixel/effects/particles/FlxTypedEmitter.hx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68118465" vertical-offset="6188" max-vertical-offset="15538">
-              <caret line="387" column="0" selection-start-line="380" selection-start-column="0" selection-end-line="387" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.8349381" vertical-offset="428" max-vertical-offset="1155">
+              <caret line="69" column="10" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -106,7 +86,7 @@
       <file leaf-file-name="Tower.hx" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/Tower.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1270" max-vertical-offset="2788">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1485" max-vertical-offset="2460">
               <caret line="99" column="21" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
               <folding />
             </state>
@@ -116,7 +96,7 @@
       <file leaf-file-name="Enemy.hx" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/Enemy.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1904" max-vertical-offset="2108">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1680" max-vertical-offset="1860">
               <caret line="112" column="58" selection-start-line="112" selection-start-column="58" selection-end-line="112" selection-end-column="58" />
               <folding />
             </state>
@@ -138,22 +118,21 @@
         <option value="$PROJECT_DIR$/source/MenuState.hx" />
         <option value="$PROJECT_DIR$/Project.xml" />
         <option value="$PROJECT_DIR$/source/Bullet.hx" />
-        <option value="$PROJECT_DIR$/source/EnemyGibs.hx" />
         <option value="$PROJECT_DIR$/source/Button.hx" />
         <option value="$PROJECT_DIR$/source/Reg.hx" />
         <option value="$PROJECT_DIR$/source/Enemy.hx" />
         <option value="$PROJECT_DIR$/source/Main.hx" />
         <option value="$PROJECT_DIR$/source/Tower.hx" />
         <option value="$PROJECT_DIR$/source/PlayState.hx" />
+        <option value="$PROJECT_DIR$/source/EnemyGibs.hx" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="108" />
-    <option name="y" value="40" />
+    <option name="y" value="22" />
     <option name="width" value="1440" />
-    <option name="height" value="986" />
+    <option name="height" value="824" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -203,8 +182,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -298,10 +277,6 @@
       <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
-    <configuration default="true" type="HXCPPRemoteRunConfigurationType" factoryName="HXCPP Remote Debug">
-      <module name="" />
-      <method />
-    </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -323,25 +298,16 @@
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
+    <configuration default="true" type="HXCPPRemoteRunConfigurationType" factoryName="HXCPP Remote Debug">
+      <module name="" />
+      <method />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -371,6 +337,19 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" />
@@ -383,6 +362,18 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="HaxeApplicationRunConfiguration" factoryName="Haxe Application">
+      <module name="" />
+      <option name="customExecutable" value="false" />
+      <option name="customExecutablePath" value="" />
+      <option name="customFileToLaunch" value="false" />
+      <option name="customFileToLaunchPath" value="" />
+      <option name="name" value="Haxe Application" />
+      <option name="saveOutputToFile" value="false" />
+      <option name="showConsoleOnStdErr" value="false" />
+      <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -403,18 +394,6 @@
       </option>
       <envs />
       <patterns />
-      <method />
-    </configuration>
-    <configuration default="true" type="HaxeApplicationRunConfiguration" factoryName="Haxe Application">
-      <module name="" />
-      <option name="customExecutable" value="false" />
-      <option name="customExecutablePath" value="" />
-      <option name="customFileToLaunch" value="false" />
-      <option name="customFileToLaunchPath" value="" />
-      <option name="name" value="Haxe Application" />
-      <option name="saveOutputToFile" value="false" />
-      <option name="showConsoleOnStdErr" value="false" />
-      <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -502,7 +481,7 @@
     <option name="totallyTimeSpent" value="835000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="108" y="40" width="1440" height="986" extended-state="0" />
+    <frame x="0" y="22" width="1440" height="824" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -515,7 +494,6 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28898582" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -529,6 +507,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28898582" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -556,6 +535,54 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/source/PlayState.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15105">
+          <caret line="800" column="21" selection-start-line="800" selection-start-column="21" selection-end-line="800" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/EnemyGibs.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1050">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/haxe/lib/flixel/3,3,4/flixel/effects/particles/FlxEmitter.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="480">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/haxe/lib/flixel/3,3,4/flixel/effects/particles/FlxTypedEmitter.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5805" max-vertical-offset="13710">
+          <caret line="387" column="0" selection-start-line="380" selection-start-column="0" selection-end-line="387" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/Tower.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1485" max-vertical-offset="2460">
+          <caret line="99" column="21" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/Enemy.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1680" max-vertical-offset="1860">
+          <caret line="112" column="58" selection-start-line="112" selection-start-column="58" selection-end-line="112" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/PlayState.hx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="16796">
@@ -834,6 +861,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/lib/haxe/lib/flixel/3,3,4/flixel/interfaces/IFlxParticle.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.041265473" vertical-offset="0" max-vertical-offset="727">
+          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/haxe/lib/flixel/3,3,4/flixel/effects/particles/FlxParticle.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.826685" vertical-offset="1553" max-vertical-offset="3045">
+          <caret line="15" column="49" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/PlayState.hx">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="13175" max-vertical-offset="17119">
@@ -842,26 +885,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/EnemyGibs.hx">
+    <entry file="file:///usr/lib/haxe/lib/flixel/3,3,4/flixel/effects/particles/FlxTypedEmitter.hx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1190">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.5252101" vertical-offset="5415" max-vertical-offset="13710">
+          <caret line="386" column="29" selection-start-line="386" selection-start-column="29" selection-end-line="386" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///usr/lib/haxe/lib/flixel/3,3,4/flixel/effects/particles/FlxEmitter.hx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.24759285" vertical-offset="0" max-vertical-offset="727">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/lib/haxe/lib/flixel/3,3,4/flixel/effects/particles/FlxTypedEmitter.hx">
+    <entry file="file://$PROJECT_DIR$/source/EnemyGibs.hx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68118465" vertical-offset="6188" max-vertical-offset="15538">
-          <caret line="387" column="0" selection-start-line="380" selection-start-column="0" selection-end-line="387" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.8349381" vertical-offset="428" max-vertical-offset="1155">
+          <caret line="69" column="10" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
           <folding />
         </state>
       </provider>

@@ -7,25 +7,30 @@ import flixel.effects.particles.FlxParticle;
 import flixel.util.FlxRandom;
 
 /**
- * 敵消滅エフェクト
+ * 敵消滅エフェクトのエミッタ
  */
 class EnemyGibs extends FlxEmitter {
     private static inline var SPEED:Int = 10;
     private static inline var SIZE:Int = 10;
 
     /**
-	 * Creates a FlxEmitter with pre-defined particle size, speed, color, inversion, and so forth.
-	 */
+     * 生成
+     */
     public function new() {
+
+        // 大きさを設定
         super(0, 0, SIZE);
 
+        // 速度を設定
         setXSpeed(-SPEED, SPEED);
         setYSpeed(-SPEED, SPEED);
 
         #if !(cpp || neko || js)
+        // 減算合成する
 		blend = BlendMode.INVERT;
         #end
 
+        // パーティクルを登録
         for(i in 0...SIZE) {
             var p:FlxParticle = new FlxParticle();
 
@@ -44,6 +49,7 @@ class EnemyGibs extends FlxEmitter {
             add(p);
         }
 
+        // エミッタグループに登録
         Reg.PS.emitterGroup.add(this);
     }
 
@@ -59,7 +65,8 @@ class EnemyGibs extends FlxEmitter {
         // Explode : true -> 一斉にすべて出現する
         // Lifespan : 1 -> 生存時間は1秒
         // Frequecy : 0 -> Explodeをfalseにした場合の出現間隔。ここでは無視される
-        // Quantity :
+        // Quantity : 10 -> 出現させる量。ここでは全部出している
+        // LifeSpanRange : 1 -> 生存時間の範囲
         start(true, 1, 0, SIZE, 1);
     }
 }
