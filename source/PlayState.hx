@@ -36,8 +36,8 @@ class PlayState extends FlxState {
     // Public variables
     public var enemiesToKill:Int = 0;
     public var enemiesToSpawn:Int = 0;
-    public var towerPrice:Int = 8;
-    public var wave:Int = 0;
+    public var towerPrice:Int = 8; // タワーの価格
+    public var wave:Int = 0; // Wave数
 
     // Public groups
     public var bulletGroup:FlxTypedGroup<Bullet>; // ショットグループ
@@ -60,7 +60,7 @@ class PlayState extends FlxState {
     private var _towerRange:FlxSprite;
 
     // Text
-    private var _centerText:FlxText;
+    private var _centerText:FlxText; // Wave開始やゲームオーバーを伝えるテキスト
     private var _enemyText:FlxText; // 敵情報テキスト
     private var _moneyText:FlxText;
     private var _tutText:FlxText;
@@ -130,6 +130,7 @@ class PlayState extends FlxState {
         _guiGroup = new FlxGroup();
 
         var height:Int = FlxG.height - 18;
+        // タワー購入ボタン
         _towerButton = new Button(2, height, "Buy [T]ower ($" + towerPrice + ")", buildTowerCallback.bind(false), 120);
         _nextWaveButton = new Button(100, height, "[N]ext Wave", nextWaveCallback.bind(false), 143);
         // ゲームスピード変更ボタン
@@ -221,14 +222,13 @@ class PlayState extends FlxState {
             }
         }
 
-        // Set up miscellaneous items: center text, buildhelper, and the tower range image
-
+        // Wave開始やゲームオーバーを伝えるテキストの生成
         _centerText = new FlxText( -200, FlxG.height / 2 - 20, FlxG.width, "", 16);
         _centerText.alignment = "center";
         _centerText.borderStyle = FlxText.BORDER_SHADOW;
 
         #if !(cpp || neko || js)
-		_centerText.blend = BlendMode.INVERT;
+		_centerText.blend = BlendMode.INVERT; // 反転合成で描画する
         #end
 
         _buildHelper = new FlxSprite(0, 0, "images/checker.png");
@@ -538,14 +538,14 @@ class PlayState extends FlxState {
     }
 
     /**
-	 * A function that is called when the user enters build mode.
-	 * @param	Skip
-	 */
+     * タワー購入ボタンを押した
+     */
     private function buildTowerCallback(Skip:Bool = false):Void {
         if(towerPrice > money) {
             return;
         }
 
+        // 建設モード切り替え
         _buildingMode = !_buildingMode;
         #if !mobile
 		_towerRange.visible = !_towerRange.visible;
@@ -736,6 +736,8 @@ class PlayState extends FlxState {
             return;
         }
 
+        // 購入実行
+        // タワーを追加する
         _towerGroup.add(new Tower(xPos, yPos, towerPrice));
 
         // After the first tower is bought, sell mode becomes available.
@@ -744,17 +746,19 @@ class PlayState extends FlxState {
             _sellButton.visible = true;
         }
 
-        // If this is the first tower the player has built, they get the tutorial text.
-        // This is made invisible after they've bought an upgrade.
 
+        // 初めての購入であればチュートリアルテキストを表示する
         if(_tutText.visible == false && _towerGroup.length == 1) {
             _tutText.visible = true;
         }
 
         FlxG.sound.play("build");
 
+        // お金を減らす
         money -= towerPrice;
+        // 価格上昇
         towerPrice += Std.int(towerPrice * 0.3);
+        // 購入ボタンのテキスト更新
         _towerButton.text = "Buy [T]ower ($" + towerPrice + ")";
         toggleMenus(General);
     }
@@ -767,11 +771,12 @@ class PlayState extends FlxState {
     }
 
     /**
-	 * Used to display either the wave number or Game Over message via the animated fly-in, fly-out text.
-	 *
-	 * @param	End		Whether or not this is the end of the game. If true, message will say "Game Over! :("
-	 */
+     * Wave開始テストやゲームオーバーのテキストを表示します
+     * @param End trueの場合ゲームオーバーテキストを表示する
+     */
     private function announceWave(End:Bool = false):Void {
+
+        // 位置を x=-200 に設定
         _centerText.x = -200;
         _centerText.text = "Wave " + wave;
 
@@ -779,6 +784,17 @@ class PlayState extends FlxState {
             _centerText.text = "Game Over! :(";
         }
 
+        // アニメーション実行
+        // obj : 対象となるFlxObject
+        // values : 操作するFlxObjectのパラメータ
+        // duration : アニメーション時間 (秒)
+        // options : オプション
+        //             - type : 種別
+        //             - complete : 完了時のコールバック関数
+        //             - ease : イージング種別
+        //             - startDelay : 開始ディレイ時間
+        //             - loopDelay : ループディレイ時間
+        // ここでは x=-200 から x=0 に向かって減速しながら移動する
         FlxTween.tween(_centerText, { x: 0 }, 2, { ease: FlxEase.expoOut, complete: hideText });
 
         _waveText.text = "Wave: " + wave;
@@ -787,24 +803,27 @@ class PlayState extends FlxState {
     }
 
     /**
-	 * Hides the center text message display on announceWave, once the first tween is complete.
-	 */
+     * アナウンステキストのフェードアウト
+     */
     private function hideText(Tween:FlxTween):Void {
         FlxTween.tween(_centerText, { x: FlxG.width }, 2, { ease: FlxEase.expoIn });
     }
 
     /**
-	 * Spawns the next wave. This increments the wave variable, displays the center text message,
-	 * sets the number of enemies to spawn and kill, hides the next wave button, and shows the
-	 * notification of the number of enemies.
-	 */
+     * 次のWave開始
+     */
     private function spawnWave():Void {
         if(_gameOver) {
             return;
         }
 
+        // Wave数を増やす
+
         wave ++;
+        // Wave開始演出
         announceWave();
+
+        // 出現する敵は 5 + Wave 数
         enemiesToKill = 5 + wave;
         enemiesToSpawn = enemiesToKill;
 

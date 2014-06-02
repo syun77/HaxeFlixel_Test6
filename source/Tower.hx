@@ -8,21 +8,22 @@ import flixel.group.FlxTypedGroup;
 
 class Tower extends FlxSprite {
 
-    public var range:Int = 40;
-    public var fireRate:Float = 1;
-    public var damage:Int = 1;
+    public var range:Int = 40;     // 射程範囲
+    public var fireRate:Float = 1; // 攻撃回数
+    public var damage:Int = 1;     // 攻撃力
 
-    public var range_LEVEL:Int = 1;
-    public var firerate_LEVEL:Int = 1;
-    public var damage_LEVEL:Int = 1;
 
-    public var range_PRIZE:Int = BASE_PRIZE;
-    public var firerate_PRIZE:Int = BASE_PRIZE;
-    public var damage_PRIZE:Int = BASE_PRIZE;
+    public var range_LEVEL:Int = 1;    // 射程範囲レベル
+    public var firerate_LEVEL:Int = 1; // 攻撃回数レベル
+    public var damage_LEVEL:Int = 1;   // 威力レベル
 
-    private var _shootInvertall:Int = 2;
-    private var _shootCounter:Int = 0;
-    private var _initialCost:Int = 0;
+    public var range_PRIZE:Int = BASE_PRIZE;    // 射程範囲の価格
+    public var firerate_PRIZE:Int = BASE_PRIZE; // 攻撃回数の価格
+    public var damage_PRIZE:Int = BASE_PRIZE;   // 威力の価格
+
+    private var _shootInvertall:Int = 2; // 発射のインターバル
+    private var _shootCounter:Int = 0;   // 発射までのカウンタ(1フレームにつき1上昇)
+    private var _initialCost:Int = 0;    // 初期コスト。売却時に使用する
     private var _indicator:FlxSprite;
 
     private static var HELPER_POINT:FlxPoint = FlxPoint.get();
@@ -32,11 +33,10 @@ class Tower extends FlxSprite {
     private static inline var BASE_PRIZE:Int = 10;
 
     /**
-	 * Create a new tower at X and Y with default range, fire rate, and damage; create this tower's indicator.
-	 * 
-	 * @param	X		The X position for this tower.
-	 * @param	Y		The Y position for this tower.
-	 */
+     * 生成
+     * @param x 座標(X)
+     * @param y 座標(Y)
+     */
     public function new(X:Float, Y:Float, Cost:Int) {
         super(X, Y, "images/tower.png");
 
@@ -48,16 +48,15 @@ class Tower extends FlxSprite {
     }
 
     /**
-	 * The tower's update function just checks if there's an enemy nearby; if so, the indicator "charges"
-	 * by slowly increasing its alpha; once the shootCounter has reached the required level, a bullet is
-	 * shot.
-	 */
+     * 更新
+     */
     override public function update():Void {
         if(getNearestEnemy() == null) {
             _indicator.visible = false;
         }
         else {
             _indicator.visible = true;
+            // 発射可能に近づくほどインジケーターをアルファ値が大きくなる
             _indicator.alpha = _shootCounter / (_shootInvertall * FlxG.updateFramerate);
 
             _shootCounter += Std.int(FlxG.timeScale);
@@ -71,8 +70,8 @@ class Tower extends FlxSprite {
     }
 
     /**
-	 * Used to determine value of a tower when selling it. Equivalent to half its next upgrade costs plus half its base cost.
-	 */
+     * 売却価格の取得
+     */
     public var value(get, null):Int;
 
     private function get_value():Int {
@@ -87,8 +86,8 @@ class Tower extends FlxSprite {
     }
 
     /**
-	 * Shoots a bullet! Called when shootCounter reaches the required limit.
-	 */
+     * 弾を撃つ
+     */
     private function shoot():Void {
         var target:Enemy = getNearestEnemy();
 
@@ -106,10 +105,8 @@ class Tower extends FlxSprite {
     }
 
     /**
-	 * Goes through the entire enemy group and returns the first non-null enemy within range of this tower.
-	 * 
-	 * @return	The first enemy that is not null, in range, and alive. Returns null if none found.
-	 */
+     * 一番近い敵を探す (正確には範囲内にいるインデックスの小さい敵)
+     */
     private function getNearestEnemy():Enemy {
         var firstEnemy:Enemy = null;
         var enemies:FlxTypedGroup<Enemy> = Reg.PS.enemyGroup;
@@ -131,9 +128,8 @@ class Tower extends FlxSprite {
     }
 
     /**
-	 * Upgrading range increases the radius within which it will consider enemies valid targets by 10.
-	 * Also updates the range_LEVEL and range_PRIZE (1.5 x LEVEL) values for display and player money impact.
-	 */
+     * 射程範囲のアップグレード
+     */
     public function upgradeRange():Void {
         range += 10;
         range_LEVEL++;
@@ -141,19 +137,19 @@ class Tower extends FlxSprite {
     }
 
     /**
-	 * Upgrading damage increases the damage value passed to bullets, and later enemies, by 1.
-	 * Also updates the damage_LEVEL and damage_PRIZE (1.5 x LEVEL) values for display and player money impact.
-	 */
+     * 威力のアップグレード
+     */
     public function upgradeDamage():Void {
         damage++;
         damage_LEVEL++;
         damage_PRIZE = Std.int(damage_PRIZE * COST_INCREASE);
     }
 
-    /**
-	 * Upgrading fire rate decreases time between shots by 10%.
-	 * Also updates the firerate_LEVEL and firerate_PRIZE (1.5 x LEVEL) values for display and player money impact.
-	 */
+     /**
+      * 発射間隔のアップグレード
+      * 発射間隔：rate x 0.9だけ短くなる
+      * 価格：prize x 1.5上昇する
+      */
     public function upgradeFirerate():Void {
         fireRate *= 0.9;
         firerate_LEVEL++;

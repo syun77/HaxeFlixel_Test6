@@ -6,6 +6,9 @@ import flixel.effects.particles.FlxEmitter;
 import flixel.effects.particles.FlxParticle;
 import flixel.util.FlxRandom;
 
+/**
+ * 敵消滅エフェクト
+ */
 class EnemyGibs extends FlxEmitter {
     private static inline var SPEED:Int = 10;
     private static inline var SIZE:Int = 10;
@@ -45,14 +48,18 @@ class EnemyGibs extends FlxEmitter {
     }
 
     /**
-	 * Explode this emitter at a given X and Y. Called by Enemy.explode() when health reaches zero or the enemy reaches the goal.
-	 * 
-	 * @param	X	The X position for this emitter.
-	 * @param	Y	The Y position for this emitter.
-	 */
+     * 敵消滅エフェクト
+     * @param x 座標(X)
+     * @param y 座標(Y)
+     */
     public function explode(X:Float, Y:Float):Void {
         x = X;
         y = Y;
+
+        // Explode : true -> 一斉にすべて出現する
+        // Lifespan : 1 -> 生存時間は1秒
+        // Frequecy : 0 -> Explodeをfalseにした場合の出現間隔。ここでは無視される
+        // Quantity :
         start(true, 1, 0, SIZE, 1);
     }
 }

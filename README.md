@@ -1,5 +1,45 @@
 # ゲーム仕様
+
+## タワーの価格
+初期状態は$8。購入ごとに1.3倍上昇する。なお端数は1回の計算ごとに切り捨てる
+
+| 購入数  | 価格 |
+| ------------- | ------------- |
+| 1  | $8  |
+| 2  | $10  |
+| 3  | $13  |
+| 4  | $16  |
+| 5  | $20  |
+| 6  | $26  |
+| 7  | $33  |
+| 8  | $42  |
+| 9  | $54  |
+| 10  | $70  |
+| i1  | $91  |
+| i2  | $118  |
+
+## タワーアップグレードの価格
+初期状態は$10。購入ごとに1.5倍上昇する。なお端数は1回の計算ごとに切り捨てる
+
+| レベル  | 価格 |
+| ------------- | ------------- |
+| 1  | $10  |
+| 2  | $15  |
+| 3  | $22  |
+| 4  | $33  |
+| 5  | $49  |
+| 6  | $73  |
+| 7  | $109  |
+| 8  | $163  |
+
+## 射程範囲
+初期状態は40px。レベル上昇ごとに+10pxだけ広がる
+
+## 攻撃威力
+初期状態は1。レベル上昇ごとに+1
+
 ## 発射間隔
+初期状態では2秒かかる。レベル上昇ごとに0.9ずつ低減していく
 ### 計算式
 計算式は、
 `カウンタ > インターバル x フレームレート x レベル`
@@ -36,6 +76,24 @@ public function upgradeFirerate():Void {
 | 4  | 1.458秒  |
 | 5  | 1.3122秒  |
 | 6  | 1.18098秒  |
+
+## 敵のパラメータ
+* 出現数 : Wave数 + 5 
+* 体力 : Wave数/3 + 1 (端数は切り捨て)
+* 移動速度 : Wave数 + 20
+
+| Wave数 | 出現数 | 体力 | 移動速度 |
+| ------------- | ------------- | ------------ |
+| 1 | 6 | 1 | 20 |
+| 2 | 7 | 1 | 21 |
+| 3 | 8 | 2 | 22 |
+| 4 | 9 | 2 | 23 |
+| 5 | 10 | 2 | 24 |
+| 6 | 11 | 3 | 25 |
+| 7 | 12 | 3 | 26 |
+| 8 | 13 | 3 | 27 |
+| 9 | 14 | 4 | 28 |
+| 10 | 15 | 4 | 29 |
 
 # 技術情報
 ## 経路探索
@@ -81,5 +139,55 @@ public function followPath(Path:Array<FlxPoint>):Void {
         new FlxPath(this, Path, 50, 0, true);
     }
 }
+```
+
+## Tweenアニメ
+Wave開始やゲームオーバー時にはTweenアニメを使用している。
+初期座標を x=-200 に設定して、x=0 へ向かって減速しながら進む(FlxEase.expoOut)。
+
+```hx
+    /**
+     * Wave開始テストやゲームオーバーのテキストを表示します
+     * @param End trueの場合ゲームオーバーテキストを表示する
+     */
+    private function announceWave(End:Bool = false):Void {
+
+        // 位置を x=-200 に設定
+        _centerText.x = -200;
+        _centerText.text = "Wave " + wave;
+
+        if(End) {
+            _centerText.text = "Game Over! :(";
+        }
+
+        // アニメーション実行
+        // obj : 対象となるFlxObject
+        // values : 操作するFlxObjectのパラメータ
+        // duration : アニメーション時間 (秒)
+        // options : オプション
+        //             - type : 種別
+        //             - complete : 完了時のコールバック関数
+        //             - ease : イージング種別
+        //             - startDelay : 開始ディレイ時間
+        //             - loopDelay : ループディレイ時間
+        // ここでは x=-200 から x=0 に向かって減速しながら移動する
+        FlxTween.tween(_centerText, { x: 0 }, 2, { ease: FlxEase.expoOut, complete: hideText });
+
+        _waveText.text = "Wave: " + wave;
+        _waveText.size = 16;
+        _waveText.visible = true;
+    }
+```
+
+アニメ完了後は、hideText()を呼び出すようにしている。
+画面外に加速しながら退出するアニメーション(FlxEase.expoIn)を呼び出している。
+
+```hx
+    /**
+     * アナウンステキストのフェードアウト
+     */
+    private function hideText(Tween:FlxTween):Void {
+        FlxTween.tween(_centerText, { x: FlxG.width }, 2, { ease: FlxEase.expoIn });
+    }
 ```
 
