@@ -5,6 +5,9 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxVelocity;
 
+/**
+ * 弾
+ **/
 class Bullet extends FlxSprite {
     /**
 	 * The amount of damage this bullet will do to an enemy. Set only via init().
@@ -29,32 +32,36 @@ class Bullet extends FlxSprite {
     }
 
     /**
-	 * Initialize this bullet by giving it a position, target, and damage amount. Usually used to create a new bullet as it is fired by a tower.
-	 * 
-	 * @param	X			The desired X position.
-	 * @param	Y			The desired Y position.
-	 * @param	Target		The desired target, an Enemy.
-	 * @param	Damage		The amount of damage this bullet can do, usually determined by the upgrade level of the tower.
-	 */
+     * 弾を指定の座標・ターゲット・ダメージ量で初期化します。通常Towerから発射されます
+     * @param X 座標(X)
+     * @param Y 座標(Y)
+     * @param Target ターゲット（エネミー）
+     * @param Damage 弾のダメージ量。この値はTowerをアップグレードしたレベルによって決まります
+     **/
     public function init(X:Float, Y:Float, Target:Enemy, Damage:Int):Void {
         reset(X, Y);
         _target = Target;
         damage = Damage;
     }
 
+    /**
+     * 更新
+     **/
     override public function update():Void {
-        // This bullet missed its target and flew off-screen; no reason to keep it around.
 
+        // ターゲットを外したり画面外に出たら消す
         if(!isOnScreen(FlxG.camera)) {
+            // 画面外に出たら消す
             kill();
         }
 
-        // Move toward the target that was assigned in init().
-
+        // init()で割り当てたターゲットに向かって移動させる
         if(_target.alive) {
+            // 一度発射されたらどこまでも飛んで行く
             FlxVelocity.moveTowardsObject(this, _target, 200);
         }
 
+        // 更新
         super.update();
     }
 }

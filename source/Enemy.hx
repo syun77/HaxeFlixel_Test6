@@ -5,8 +5,11 @@ import flixel.FlxSprite;
 import flixel.util.FlxPath;
 import flixel.util.FlxPoint;
 
+/**
+ * 敵
+ **/
 class Enemy extends FlxSprite {
-    public var moneyGain:Bool = true;
+//    public var moneyGain:Bool = true; // お金もらえるかどうか
     public var maxHealth:Float = 1.0; // 最大HP
 
     /**
@@ -42,6 +45,8 @@ class Enemy extends FlxSprite {
 	 * The alpha of the enmy is dependent on health.
 	 */
     override public function update():Void {
+
+        // 体力が減るほどアルファ値を減らす
         alpha = health / maxHealth;
 
         super.update();

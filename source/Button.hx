@@ -2,33 +2,38 @@ package;
 
 import flixel.text.FlxText;
 import flixel.text.FlxText;
-import flash.Lib;
-import flash.events.MouseEvent;
-import flixel.FlxG;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.ui.FlxButton;
 
+/**
+ * カスタムボタン
+ **/
 class Button extends FlxButton {
 
     /**
-	 * Create a new minimalist button that has black and white text and no background.
-	 * 
-	 * @param	X		The X position of the button.
-	 * @param	Y		The Y position of the button.
-	 * @param	Label	The text for this button to display.
-	 * @param	OnDown	An optional function to call when the button is clicked.
-	 * @param	Width	The width of this button. By default, it's set to seven times the length of the label string.
-	 */
+     * Minimalistボタンを生成します。黒い背景に白いテキストのボタンとなります
+     * @param X      座標(X)
+     * @param Y      座標(Y)
+     * @param Label  ラベルテキスト
+     * @param OnDown ボタン押下時のコールバック関数
+     * @param Width  ボタンの幅
+     **/
     public function new(X:Int = 0, Y:Int = 0, Label:String, ?OnDown:Void -> Void, Width:Int = -1) {
+
+        // 座標・ラベル・コールバックを設定
         super(X, Y, Label, OnDown);
 
+        // 幅の指定を反映
         if(Width > 0) {
             width = Width;
         }
         else {
+            // フォントサイズは「7」とする
             width = Label.length * 7;
         }
+
+        // 高さは20固定
         height = 20;
         label.alpha = 1;
         set_status(status);

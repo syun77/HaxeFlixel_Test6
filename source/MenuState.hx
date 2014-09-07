@@ -1,7 +1,6 @@
 package;
 
 import flixel.util.FlxPoint;
-import flash.display.BlendMode;
 import openfl.Assets;
 import flixel.FlxG;
 import flixel.FlxState;
@@ -10,6 +9,9 @@ import flixel.util.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.tile.FlxTilemap;
 
+/**
+ * タイトル画面
+ **/
 class MenuState extends FlxState {
     private static inline var TILE_SIZE:Int = 8;
     private static inline var START_X:Int = TILE_SIZE * 5 + 1;
@@ -25,9 +27,10 @@ class MenuState extends FlxState {
 	 */
 
     override public function create():Void {
-        // Change the default mouse to an inverted triangle.
+        // オリジナルのマウスカーソルを設定
         FlxG.mouse.load("images/mouse.png");
         #if flash
+        // 反転描画を有効にする (Flashのみ)
 		FlxG.mouse.cursorContainer.blendMode = BlendMode.INVERT;
 		#end
 
@@ -35,30 +38,28 @@ class MenuState extends FlxState {
 
         // Load a map from CSV data; note that the tile graphic does not need to be a file; in this case, it's BitmapData.
 
+        // マップデータの読み込み
         _map = new FlxTilemap();
         _map.loadMap(Assets.getText("tilemaps/menu_tilemap.csv"), Reg.tileImage);
 
-        // Game title
-
+        // ゲームタイトル表示
         var headline:FlxText = new FlxText(0, 40, FlxG.width, "Minimalist TD", 16);
         headline.alignment = "center";
 
-        // Credits
-
+        // ゲームクレジット
         var credits:FlxText = new FlxText(2, FlxG.height - 12, FlxG.width, "Made in 48h for Ludum Dare 26 by Gama11");
 
-        // Play button
-
+        // 開始ボタンの生成
         var playButton:Button = new Button(0, Std.int(FlxG.height / 2), "[P]lay", playButtonCallback);
         playButton.x = Std.int((FlxG.width - playButton.width) / 2);
 
-        // The enemy that repeatedly traverses the screen.
 
+
+        // 敵を配置して繰り返し画面を横断させる
         _enemy = new Enemy(START_X, START_Y);
         enemyFollowPath();
 
-        // Add everything to the state
-
+        // オブジェクトを登録
         add(_map);
         add(headline);
         add(credits);
