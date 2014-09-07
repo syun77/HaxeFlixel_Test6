@@ -9,11 +9,13 @@ class Reg {
     public static var PS:PlayState;
 
     /**
-	 * Returns a 24px by 8px image that is used as the tileset graphic.
-	 */
+     * 24x8のタイルセット画像 (FlxTilemapで使用する)
+     **/
     public static var tileImage(get, null):BitmapData;
 
     public static function get_tileImage():BitmapData {
+        // タイルセット画像のパターンを作成
+        // 白,黒,白
         var tileset:BitmapData = new BitmapData(8 * 3, 8, false, FlxColor.WHITE);
         tileset.draw(new BitmapData(8, 8, false, FlxColor.BLACK), new Matrix(1, 0, 0, 1, 8, 0));
         return tileset;

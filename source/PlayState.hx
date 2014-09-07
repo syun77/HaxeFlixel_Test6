@@ -23,6 +23,9 @@ enum MenuType {
     ConfirmSell;
 }
 
+/**
+ * メインゲーム
+ **/
 class PlayState extends FlxState {
     /**
 	 * Helper Sprite object to draw tower's range graphic
@@ -41,7 +44,7 @@ class PlayState extends FlxState {
 
     // Public groups
     public var bulletGroup:FlxTypedGroup<Bullet>; // ショットグループ
-    public var emitterGroup:FlxTypedGroup<EnemyGibs>; // ？
+    public var emitterGroup:FlxTypedGroup<EnemyGibs>; // エフェクトグループ
     public var enemyGroup:FlxTypedGroup<Enemy>; // 敵グループ
     public var towerIndicators:FlxTypedGroup<FlxSprite>; // タワーグループ
 
@@ -314,6 +317,7 @@ class PlayState extends FlxState {
         if(FlxG.keys.justReleased.S) sellButtonCallback(true);
         if(FlxG.keys.justReleased.Y) sellConfirmCallback(true);
         if(FlxG.keys.justReleased.ESCAPE) {
+            // ESCAPEでタイトル画面に戻る
             FlxG.sound.destroy(true);
             FlxG.switchState(new MenuState());
         }

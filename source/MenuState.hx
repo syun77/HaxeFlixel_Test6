@@ -1,5 +1,7 @@
 package;
 
+import flixel.FlxSprite;
+import flash.display.Sprite;
 import flixel.util.FlxPoint;
 import openfl.Assets;
 import flixel.FlxG;
@@ -36,9 +38,12 @@ class MenuState extends FlxState {
 
         FlxG.cameras.bgColor = FlxColor.WHITE;
 
-        // Load a map from CSV data; note that the tile graphic does not need to be a file; in this case, it's BitmapData.
-
         // マップデータの読み込み
+        // CSVファイルを読み込みタイル画像を設定する
+        // タイル情報は、
+        //  0: 通過できないタイル
+        //  1: 通過可能なタイル
+        // となる
         _map = new FlxTilemap();
         _map.loadMap(Assets.getText("tilemaps/menu_tilemap.csv"), Reg.tileImage);
 
@@ -70,23 +75,25 @@ class MenuState extends FlxState {
     }
 
     /**
-	 * Activated when clicking "Play" or pressing P; switches to the playstate.
-	 */
-
+     * 開始ボタンを押した
+     **/
     private function playButtonCallback():Void {
+        // メインゲームを開始する
         FlxG.switchState(new PlayState());
     }
 
+    /**
+     * 更新
+     **/
     override public function update():Void {
-        // Check if the enemy has reached the end of the path yet
 
+        // 敵がパスの終端に達したかどうかをチェックする
         if(_enemy.y >= 28 * TILE_SIZE) {
-            // If so, reset them to the beginning of the path
+            // 終端なので、パスの開始に初期化する
             enemyFollowPath();
         }
 
-        // Begin the game on a P keypress.
-
+        // Pキーでゲームを開始する
         if(FlxG.keys.justReleased.P) {
             playButtonCallback();
         }
@@ -95,13 +102,15 @@ class MenuState extends FlxState {
     }
 
     /**
-	 * Starts the enemy on the map path.
-	 */
-
+     * 敵の移動パスを開始する
+     **/
     public function enemyFollowPath():Void {
         _enemy.followPath(_map.findPath(FlxPoint.get(START_X, START_Y), FlxPoint.get(END_X, END_Y)));
     }
 
+    /**
+     * 破棄する
+     **/
     override public function destroy():Void {
         _enemy = null;
         _map = null;
